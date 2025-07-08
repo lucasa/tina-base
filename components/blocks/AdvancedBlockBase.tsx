@@ -14,7 +14,7 @@ export interface AdvancedBlockBaseProps {
 export abstract class AdvancedBlockBase<P extends AdvancedBlockBaseProps = AdvancedBlockBaseProps, S = any> extends React.Component<P, S> {
   constructor(props: P) {
     super(props);
-    this.state = props.initialState || {};
+    this.state = (props.initialState ?? {}) as S;
     this.applyMixins();
   }
 
