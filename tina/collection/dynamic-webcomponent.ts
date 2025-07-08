@@ -1,7 +1,7 @@
 import { Template } from 'tinacms';
 
 export const dynamicWebComponentBlockSchema: Template = {
-  name: 'dynamic-webcomponent',
+  name: 'dynamic_webcomponent',
   label: 'Dynamic WebComponent',
   ui: {
     previewSrc: '/blocks/dynamic-webcomponent.png',
@@ -26,11 +26,9 @@ export const dynamicWebComponentBlockSchema: Template = {
       list: true,
     },
     {
-      type: 'object',
-      label: 'Estado Inicial',
+      type: 'string',
+      label: 'Estado Inicial URL',
       name: 'initialState',
-      fields: [],
-      ui: { component: 'group' },
     },
     {
       type: 'string',
