@@ -43,7 +43,7 @@ const Block = (block: PageBlocks) => {
       return <Testimonial data={block} />;
     case "PageBlocksCta":
       return <CallToAction data={block} />;
-    case "PageBlocksDynamicWebcomponent":
+    case "PageBlocksDynamic_webcomponent":
       return <DynamicWebComponentBlock {...(block as any)} />;
     default:
       return null;
