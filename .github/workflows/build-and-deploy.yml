@@ -24,6 +24,16 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+env:
+  NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID || 'NONE' }}
+  NEXT_PUBLIC_TINA_BRANCH: ${{ github.ref_name }}
+  TINA_TOKEN: ${{ secrets.TINA_TOKEN || 'NONE' }}
+
+  CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
+  TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
+  TINA_PUBLIC_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
+  TINA_BRANCH: ${{ github.ref_name }}
+
 jobs:
   # Build job
   build:
@@ -97,11 +107,7 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
 
       - name: Build with Next.js
-        run: ${{ steps.detect-package-manager.outputs.runner }} tinacms build
-        env:
-          NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID || 'NONE' }}
-          NEXT_PUBLIC_TINA_BRANCH: ${{ github.ref_name }}
-          TINA_TOKEN: ${{ secrets.TINA_TOKEN || 'NONE' }}
+        run: pnpm build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
