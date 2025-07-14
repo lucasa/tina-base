@@ -1,5 +1,7 @@
 import React from 'react';
+import type { Template } from 'tinacms';
 import { AdvancedBlockBase, AdvancedBlockBaseProps, BlockView } from '../AdvancedBlockBase';
+import { sectionBlockSchemaField } from '@/components/layout/section';
 
 export interface TimelineEvent {
   id: string;
@@ -41,3 +43,40 @@ export class InteractiveTimelineBlock extends AdvancedBlockBase<InteractiveTimel
     }
   }
 }
+
+export const interactiveTimelineBlockSchema: Template = {
+  name: 'interactive_timeline',
+  label: 'Linha do Tempo Interativa',
+  ui: {
+    previewSrc: '/blocks/interactive-timeline.png',
+    defaultItem: {
+      view: 'default',
+    },
+  },
+  fields: [
+    sectionBlockSchemaField as any,
+    {
+      type: 'string',
+      label: 'URL da Timeline',
+      name: 'timelineUrl',
+      description: 'URL JSON que retorna os dados da linha do tempo',
+    },
+    {
+      type: 'string',
+      label: 'Vista',
+      name: 'view',
+      options: [
+        { label: 'Padrão', value: 'default' },
+        { label: 'Horizontal', value: 'horizontal' },
+        { label: 'Vertical', value: 'vertical' },
+        { label: 'Editor', value: 'edit' },
+        { label: 'Filtro', value: 'filter' },
+      ],
+    },
+    {
+      type: 'boolean',
+      label: 'Animações',
+      name: 'animations',
+    },
+  ],
+};

@@ -1,5 +1,7 @@
 import React from 'react';
+import type { Template } from 'tinacms';
 import { AdvancedBlockBase, AdvancedBlockBaseProps, BlockView } from '../AdvancedBlockBase';
+import { sectionBlockSchemaField } from '@/components/layout/section';
 
 export interface WhiteboardAffineBlockProps extends AdvancedBlockBaseProps {
   boardUrl?: string;
@@ -20,3 +22,38 @@ export class WhiteboardAffineBlock extends AdvancedBlockBase<WhiteboardAffineBlo
     }
   }
 }
+
+export const whiteboardAffineBlockSchema: Template = {
+  name: 'whiteboard_affine',
+  label: 'Quadro Branco Affine',
+  ui: {
+    previewSrc: '/blocks/whiteboard-affine.png',
+    defaultItem: {
+      view: 'default',
+    },
+  },
+  fields: [
+    sectionBlockSchemaField as any,
+    {
+      type: 'string',
+      label: 'Workspace ID',
+      name: 'workspaceId',
+      description: 'ID do workspace Affine',
+    },
+    {
+      type: 'string',
+      label: 'Vista',
+      name: 'view',
+      options: [
+        { label: 'Padrão', value: 'default' },
+        { label: 'Somente Leitura', value: 'readonly' },
+        { label: 'Editor', value: 'edit' },
+      ],
+    },
+    {
+      type: 'boolean',
+      label: 'Modo Colaborativo',
+      name: 'collaborative',
+    },
+  ],
+};

@@ -1,5 +1,7 @@
 import React from 'react';
+import type { Template } from 'tinacms';
 import { AdvancedBlockBase, AdvancedBlockBaseProps, BlockView } from '../AdvancedBlockBase';
+import { sectionBlockSchemaField } from '@/components/layout/section';
 
 export interface EducationalResourcesBlockProps extends AdvancedBlockBaseProps {
   resources?: any[];
@@ -20,3 +22,51 @@ export class EducationalResourcesBlock extends AdvancedBlockBase<EducationalReso
     }
   }
 }
+
+export const educationalResourcesBlockSchema: Template = {
+  name: 'educational_resources',
+  label: 'Recursos Educacionais',
+  ui: {
+    previewSrc: '/blocks/educational-resources.png',
+    defaultItem: {
+      view: 'default',
+    },
+  },
+  fields: [
+    sectionBlockSchemaField as any,
+    {
+      type: 'string',
+      label: 'URL dos Recursos',
+      name: 'resourcesUrl',
+      description: 'URL JSON que retorna os recursos educacionais',
+    },
+    {
+      type: 'string',
+      label: 'Vista',
+      name: 'view',
+      options: [
+        { label: 'Padrão', value: 'default' },
+        { label: 'Grade', value: 'grid' },
+        { label: 'Lista', value: 'list' },
+        { label: 'Busca', value: 'search' },
+      ],
+    },
+    {
+      type: 'object',
+      label: 'Filtros',
+      name: 'filters',
+      fields: [
+        {
+          type: 'string',
+          label: 'Categoria',
+          name: 'category',
+        },
+        {
+          type: 'string',
+          label: 'Nível',
+          name: 'level',
+        },
+      ],
+    },
+  ],
+};

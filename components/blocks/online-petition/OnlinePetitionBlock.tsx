@@ -1,5 +1,7 @@
 import React from 'react';
+import type { Template } from 'tinacms';
 import { AdvancedBlockBase, AdvancedBlockBaseProps, BlockView } from '../AdvancedBlockBase';
+import { sectionBlockSchemaField } from '@/components/layout/section';
 
 // Tipos auxiliares
 interface PetitionData {
@@ -162,3 +164,37 @@ export class OnlinePetitionBlock extends AdvancedBlockBase<OnlinePetitionBlockPr
     );
   }
 }
+
+export const onlinePetitionBlockSchema: Template = {
+  name: 'online_petition',
+  label: 'Petição Online',
+  ui: {
+    previewSrc: '/blocks/online-petition.png',
+    defaultItem: {
+      view: 'default',
+    },
+  },
+  fields: [
+    sectionBlockSchemaField as any,
+    {
+      type: 'string',
+      label: 'URL da Petição',
+      name: 'petitionUrl',
+      description: 'URL JSON que retorna os dados da petição',
+    },
+    {
+      type: 'string',
+      label: 'Vista',
+      name: 'view',
+      options: [
+        { label: 'Padrão', value: 'default' },
+        { label: 'Compacta', value: 'compact' },
+      ],
+    },
+    {
+      type: 'boolean',
+      label: 'Mostrar Contador',
+      name: 'showCounter',
+    },
+  ],
+};
