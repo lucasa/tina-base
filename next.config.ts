@@ -40,6 +40,10 @@ const nextConfig: NextConfig = {
         source: '/admin',
         destination: '/admin/index.html',
       },
+      {
+        source: '/storybook',
+        destination: '/storybook/index.html',
+      },
     ];
   },
 };
