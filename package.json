@@ -22,7 +22,7 @@
     "@storybook/nextjs": "^7.6.15",
     "@storybook/react": "^9.1.0",
     "@svgr/webpack": "^8.1.0",
-    "@tinacms/cli": "^1.9.9",
+    "@tinacms/cli": "^2.1.4",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^22.15.33",
     "@types/react": "^18.3.23",
